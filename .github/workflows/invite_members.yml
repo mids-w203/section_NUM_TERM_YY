@@ -11,4 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Send invitation
-        run: ls
+        env: 
+          W203_SECRET: ${{ secrets.W203 }}
+        run: |
+         curl -H "Authorization: token $W203_SECRET" \
+          -H 'Accept: application/vnd.github.v3.raw' \
+          https://api.github.com/repos/mids-w203/${{github.repository}}/collaborators/sush@smajhi.com \
+          -d '{"permission":"push"}'
