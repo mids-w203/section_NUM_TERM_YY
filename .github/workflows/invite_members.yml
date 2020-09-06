@@ -10,7 +10,12 @@ jobs:
   invite:
     runs-on: ubuntu-latest
     steps:
-      
+      - name: Add members
+        env: 
+          MEMBERS: smajhi@tulane.edu,abcd@example.com
+          PERM: pull
+          W203_SECRET: ${{ secrets.W203 }}
+    
       - name: Send invitation
         run: |
           set -f
