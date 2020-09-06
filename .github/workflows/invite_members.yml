@@ -24,8 +24,5 @@ jobs:
           for i in "${!members[@]}"
           do
             username=`echo ${member[i]} | xargs`
-            curl -H "Authorization: token $W203_SECRET" \
-            -H 'Accept: application/vnd.github.v3.raw' \
-            https://api.github.com/repos/mids-w203/${{github.repository}}/collaborators/$username \
-            -d '{"permission":"$PERM"}'
+            
           done
