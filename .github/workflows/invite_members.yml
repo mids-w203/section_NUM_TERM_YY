@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Add members
         env: 
-          MEMBERS: "smajhi@tulane.edu,"
+          MEMBERS: "smajhi@tulane.edu,abcd@example.com"
           PERM: "pull"
 
       - name: Send invitation
@@ -23,8 +23,9 @@ jobs:
           members=(${MEMBERS//,/ })
           for i in "${!members[@]}"
           do
+            username=`echo ${member[i]} | xargs` # trim username
             curl -H "Authorization: token $W203_SECRET" \
             -H 'Accept: application/vnd.github.v3.raw' \
-            https://api.github.com/repos/mids-w203/${{github.repository}}/collaborators/${members[i]} \
+            https://api.github.com/repos/mids-w203/${{github.repository}}/collaborators/$username \
             -d '{"permission":"$PERM"}'
           done
