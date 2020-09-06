@@ -15,14 +15,4 @@ jobs:
           MEMBERS: "smajhi@tulane.edu,abcd@example.com"
           PERM: "pull"
 
-      - name: Send invitation
-        env: 
-          W203_SECRET: ${{ secrets.W203 }}
-        run: |
-          set -f
-          members=(${MEMBERS//,/ })
-          for i in "${!members[@]}"
-          do
-            username=`echo ${member[i]} | xargs`
-            
-          done
+      
