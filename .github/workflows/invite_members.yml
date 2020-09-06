@@ -10,11 +10,21 @@ jobs:
   invite:
     runs-on: ubuntu-latest
     steps:
+      - name: Add members
+        env: 
+          MEMBERS: "smajhi@tulane.edu,"
+          PERM: "pull"
+
       - name: Send invitation
         env: 
           W203_SECRET: ${{ secrets.W203 }}
         run: |
-         curl -H "Authorization: token $W203_SECRET" \
-          -H 'Accept: application/vnd.github.v3.raw' \
-          https://api.github.com/repos/mids-w203/${{github.repository}}/collaborators/sush@smajhi.com \
-          -d '{"permission":"push"}'
+          set -f
+          members=(${MEMBERS//,/ })
+          for i in "${!members[@]}"
+          do
+            curl -H "Authorization: token $W203_SECRET" \
+            -H 'Accept: application/vnd.github.v3.raw' \
+            https://api.github.com/repos/mids-w203/${{github.repository}}/collaborators/${members[i]} \
+            -d '{"permission":"$PERM"}'
+          done
