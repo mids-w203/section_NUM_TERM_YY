@@ -21,6 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Define the start date
+        run: echo "Defining start date"
         env:
           start_date: "2020-08-24"
               
