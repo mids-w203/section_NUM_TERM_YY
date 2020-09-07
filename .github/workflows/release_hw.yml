@@ -23,7 +23,7 @@ jobs:
       - name: Define the start date
         run: echo "Defining start date"
         env:
-          start_date: "2020-08-24"
+          START_DATE: "2020-08-24"
               
       - uses: actions/checkout@v2
 
@@ -66,8 +66,13 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
-          git commit -m "Release homework $UNIT"    
-      
+          # Check if today's date follows the start date
+          if [ $(($(date +%s) - $(date +%s --date $START_DATE))) -gt 0 ]
+          then
+            git commit -m "Release homework $UNIT"
+          else
+          fi
+              
       - name: Push commit
         uses: ad-m/github-push-action@master
         with:
