@@ -23,7 +23,7 @@ jobs:
       - name: Define the start date
         run: echo "Defining start date"
         env:
-          START_DATE: "2020-08-24"
+          START_DATE: "2020-09-24"
               
       - uses: actions/checkout@v2
 
