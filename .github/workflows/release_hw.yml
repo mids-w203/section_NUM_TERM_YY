@@ -20,6 +20,10 @@ jobs:
   hw:
     runs-on: ubuntu-latest
     steps:
+      - name: Define the start date
+        env:
+          start_date: "2020-08-24"
+              
       - uses: actions/checkout@v2
 
       - name: Clone instrutor_central repo
