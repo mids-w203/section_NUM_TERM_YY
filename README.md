@@ -20,7 +20,7 @@ Any repository generated from this template will contains Github Actions to auto
 - Release weekly homework
 - Release homework solution
 
-### Initialization Steps
+### Initialization Steps: Access Key and Secrets
 Here are the steps to activate and customize the actions for your section repo.
 1. Create a personal access token (https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token).
    For step 6, a good descriptive name woudl be "W203 token". In step 7, select "repo". Generate the token, and make sure to copy it.
@@ -31,3 +31,8 @@ Here are the steps to activate and customize the actions for your section repo.
 
    **Note:** Your acceess token and this secret should be kept secret. Grant your students only read/write permission. They will not have
    access the secret unless you give them admin rights.
+
+### Customize the Jobs
+Follow the steps to customize the scheduled actions. 
+1. 
+2.
