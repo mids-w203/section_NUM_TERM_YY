@@ -22,8 +22,8 @@ jobs:
     steps:
       - name: Define the start date
         run: echo "Defining start date"
-        env:
-          START_DATE: "2020-09-24"
+          export START_DATE="2020-09-24"
+          echo "::set-env name=START_DATE::$START_DATE"
               
       - uses: actions/checkout@v2
 
