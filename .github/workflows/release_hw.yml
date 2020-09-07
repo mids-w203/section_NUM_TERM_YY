@@ -67,6 +67,7 @@ jobs:
           git config --local user.name "GitHub Action"
           git add .
           # Check if today's date follows the start date
+          echo $START_DATE
           if [ $(($(date +%s) - $(date +%s --date $START_DATE))) -gt 0 ]
           then
             git commit -m "Release homework $UNIT"
