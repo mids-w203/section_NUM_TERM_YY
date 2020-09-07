@@ -25,4 +25,9 @@ Here are the steps to activate and customize the actions for your section repo.
 1. Create a personal access token (https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token).
    For step 6, a good descriptive name woudl be "W203 token". In step 7, select "repo". Generate the token, and make sure to copy it.
    We need it in the following step. 
-2. Go to your section repository, and 
+2. Go to your section repository, then *Settings* -> *Secrets*.
+3. Click on the "New Secret" button to create a new *secret variable* with the name *W203*. In the *value* field, paste the copied access token
+   from step 1.
+
+   **Note:** Your acceess token and this secret should be kept secret. Grant your students only read/write permission. They will not have
+   access the secret unless you give them admin rights.
