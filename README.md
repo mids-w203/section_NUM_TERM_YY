@@ -1,1 +1,1 @@
-# section_NUM_TERM_YY
+# Template for Section Specific Repositories
