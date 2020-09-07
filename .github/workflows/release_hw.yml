@@ -70,7 +70,6 @@ jobs:
           if [ $(($(date +%s) - $(date +%s --date $START_DATE))) -gt 0 ]
           then
             git commit -m "Release homework $UNIT"
-          else
           fi
               
       - name: Push commit
