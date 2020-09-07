@@ -34,5 +34,6 @@ Here are the steps to activate and customize the actions for your section repo.
 
 ### Customize the Jobs
 Follow the steps to customize the scheduled actions. 
-1. 
-2.
+1. Go to *.github/workflows/release_hw.yml*
+2. Follow the instructions documented in the file to chage line #17 for your section.
+3. Follow the instructions documented in the file to chage line #25 for your section. 
