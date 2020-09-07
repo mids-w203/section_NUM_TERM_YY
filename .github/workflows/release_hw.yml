@@ -22,7 +22,6 @@ jobs:
     steps:     
       - name: Define the start date
         run: |
-          echo "Defining start date"
           export START_DATE="2020-09-24"
           echo "::set-env name=START_DATE::$START_DATE"
         
@@ -68,8 +67,7 @@ jobs:
           git config --local user.name "GitHub Action"
           git add .
           # Check if today's date follows the start date
-          echo START DATE: $START_DATE
-          if [ $(($(date +%s) - $(date +%s --date "2020-09-24"))) -gt 0 ]
+          if [ $(($(date +%s) - $(date +%s --date $START_DATE))) -gt 0 ]
           then
             git commit -m "Release homework $UNIT"
           fi
