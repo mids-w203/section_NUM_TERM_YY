@@ -1,12 +1,9 @@
-# This Github workflow automates the process of releasing weekly homework for MIDS-W203
-name: Release Weekly Homework
+# This Github workflow automates the process of releasing weekly homeworks for MIDS-W203
+name: Weekly Homework
 
 # Schedule the action
 on:
-  # Add the following line to manually trigger actions
-  workflow_dispatch: 
-  
-  # The actions are scheduled by the following crontab. All times are in UTC. The first two entries are minutes and hours (in UTC), and 
+  # The actions are scheduled by the following crontab. **All times are based in UTC**. The first two entries are minutes and hours (in UTC), and 
   # the last entry is the day (0: Sunday, 1: Monday,..., 6: Saturday). 
   # Example: 
   #   Suppose that I want to release the homeworks every Thursday at 2:30 PST, i.e., 19:30 UTC.
