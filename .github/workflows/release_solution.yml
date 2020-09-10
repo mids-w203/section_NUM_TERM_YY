@@ -17,6 +17,12 @@ jobs:
   solution:
     runs-on: ubuntu-latest
     steps:
+      - name: Define the start date
+        run: |
+          # This is the start date (in UTC) of the course. The workflow becomes effective only after this date. 
+          export START_DATE="2020-09-24"
+          echo "::set-env name=START_DATE::$START_DATE"
+          
       - uses: actions/checkout@v2
 
       - name: Clone instrutor_central repo
