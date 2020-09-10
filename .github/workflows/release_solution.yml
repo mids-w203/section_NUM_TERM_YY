@@ -3,12 +3,12 @@ name: Homework Solution
 
 # Schedule the action
 on:
-  # The actions are scheduled by the following crontab. All times are in UTC. The first two entries are minutes and hours (in UTC), and 
+  # The actions are scheduled by the following crontab. **All times are based in UTC**. The first two entries are minutes and hours (in UTC), and 
   # the last entry is the day (0: Sunday, 1: Monday,..., 6: Saturday). 
   # Example: 
-  #   Suppose that I want to release the homeworks every Thursday at 2:30 PST, i.e., 19:30 UTC.
-  #   In the crontab, I would use '30 19 * * 4'. 
-  #   For more, go to https://crontab.guru/#30_19_*_*_4   
+  #   Suppose that I want to release the homeworks every Wednesday at 7:30pm PST, i.e., Thursday at 2:30am UTC.
+  #   In the crontab, I would use '30 2 * * 4'. 
+  #   For more, go to https://crontab.guru/#30_2_*_*_4    
   schedule:
     # Time in UTC
     - cron: '30 19 * * 4'
