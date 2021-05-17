@@ -11,66 +11,39 @@ on:
   #   For more, go to https://crontab.guru/#30_2_*_*_4    
   schedule:
     # Time in UTC
-    - cron: '30 19 * * 4'
+    - cron: '00 04 * * *'
       
 jobs:
   solution:
     runs-on: ubuntu-latest
     steps:
-      - name: Define the start date
-        run: |
-          # This is the start date (in UTC) of the course. The workflow becomes effective only after this date. 
-          export START_DATE="2020-09-24"
-          echo "::set-env name=START_DATE::$START_DATE"
-          
-      - uses: actions/checkout@v2
-
-      - name: Clone instrutor_central repo
+      - name: Grant Access
         env: 
           W203_SECRET: ${{ secrets.W203 }}
-        run: |
-          curl -H "Authorization: token $W203_SECRET" \
-          -H 'Accept: application/vnd.github.v3.raw' \
-          -O -L https://api.github.com/repos/mids-w203/instructor_central/zipball 
-        
-      - name: Unzip central, rename, and clean
-        run: |
-          unzip zipball
-          mv $(ls | grep mids) instructor_central
-          rm zipball
+        run: | 
+          start_week=18
+          current_week=$(date +%U)
+          mids_week=$( printf '%02d' $((current_week - start_week + 1)) )
+          repo="su_21_unit_${mids_week}_ls_sol"
           
-      - name: Create homework folder
-        run: mkdir -p homework
-
-      - name: Get the last unit and create the new unit
-        run: |
-          unit=$(ls homework | grep sol | tail -1 | cut -d'_' -f3)
-          if [ -z "$unit" ]
-          then
-            new_unit='01'
-          else
-            new_unit=`printf "%02d" $((${unit#0}+1))`
-          fi
-          export UNIT=$new_unit
-          echo "::set-env name=UNIT::$UNIT"
+          export DAY=$(($(date +%u) - 1))
           
-      - name: Copy the new homework and clean
-        run: |
-          cp -r "instructor_central/homework/solutions_unit_$UNIT" homework
-          rm -rf instructor_central  
+          declare -A sections
+          sections[1]=01
+          sections[2]=02,03,04,05
+          sections[3]=06,07
+          sections[4]=08,10,12
+          sections[6]=09,11
+          sections[0]=01
+          
+          export IFS=','
+          
+          for section in ${sections[$DAY]}; do
+            team="su_21_section_#{$section}"
             
-      - name: Commit files     
-        run: |
-          # Change it to your email
-          git config --local user.email "action@github.com"
-          
-          # Change it to your name
-          git config --local user.name "GitHub Action"
-          
-          git add .
-          git commit -m "Release homework $UNIT"    
-      
-      - name: Push commit
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+            curl \
+              -X PUT \
+              -H "Accept: application/vnd.github.inertia-preview+json" \
+              https://api.github.com/orgs/mids-w203/teams/${team}/repos/mids-w203/${repo} \
+              -d '{"permission":"pull"}'
+          done
