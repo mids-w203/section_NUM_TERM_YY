@@ -23,15 +23,14 @@ jobs:
           W203_SECRET: ${{ secrets.W203 }}
         run: | 
           start_week=18
+          
           current_week=$(date +%U)
           mids_week=$( printf '%02d' $((current_week - start_week + 1)) )
           
-          mids_week=02
           repo="su_21_unit_${mids_week}_ls_sol"
           
           day=$(($(date +%u) - 1))
-          day=6
-          
+
           declare -A sections
           sections[1]=01
           sections[2]=02,03,04,05
@@ -43,9 +42,6 @@ jobs:
           
           for section in ${sections[$day]}; do
             team="su_21_section_${section}"
-            
-            echo $repo
-            echo $team
             
             curl -H "Authorization: token $W203_SECRET" \
               -X PUT \
