@@ -25,6 +25,8 @@ jobs:
           start_week=18
           current_week=$(date +%U)
           mids_week=$( printf '%02d' $((current_week - start_week + 1)) )
+          
+          mids_week=02
           repo="su_21_unit_${mids_week}_ls_sol"
           
           day=$(($(date +%u) - 1))
