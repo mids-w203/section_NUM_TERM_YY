@@ -30,7 +30,7 @@ jobs:
           repo="su_21_unit_${mids_week}_ls_sol"
           
           day=$(($(date +%u) - 1))
-          day=2
+          day=1
           
           declare -A sections
           sections[1]=01
