@@ -3,6 +3,7 @@ name: Homework Solution
 
 # Schedule the action
 on:
+  workflow_dispatch:
   # The actions are scheduled by the following crontab. **All times are based in UTC**. The first two entries are minutes and hours (in UTC), and 
   # the last entry is the day (0: Sunday, 1: Monday,..., 6: Saturday). 
   # Example: 
