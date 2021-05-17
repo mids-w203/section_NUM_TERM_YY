@@ -30,7 +30,7 @@ jobs:
           repo="su_21_unit_${mids_week}_ls_sol"
           
           day=$(($(date +%u) - 1))
-          day=0
+          day=2
           
           declare -A sections
           sections[1]=01
@@ -38,7 +38,6 @@ jobs:
           sections[3]=06,07
           sections[4]=08,10,12
           sections[6]=09,11
-          sections[0]=01
           
           export IFS=','
           
