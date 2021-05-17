@@ -46,7 +46,7 @@ jobs:
             echo $repo
             echo $team
             
-            curl \
+            curl -H "Authorization: token $W203_SECRET" \
               -X PUT \
               -H "Accept: application/vnd.github.inertia-preview+json" \
               https://api.github.com/orgs/mids-w203/teams/${team}/repos/mids-w203/${repo} \
