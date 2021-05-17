@@ -27,7 +27,8 @@ jobs:
           mids_week=$( printf '%02d' $((current_week - start_week + 1)) )
           repo="su_21_unit_${mids_week}_ls_sol"
           
-          export DAY=$(($(date +%u) - 1))
+          day=$(($(date +%u) - 1))
+          day = 0
           
           declare -A sections
           sections[1]=01
@@ -39,8 +40,11 @@ jobs:
           
           export IFS=','
           
-          for section in ${sections[$DAY]}; do
+          for section in ${sections[$day]}; do
             team="su_21_section_#{$section}"
+            
+            echo $repo
+            echo $team
             
             curl \
               -X PUT \
