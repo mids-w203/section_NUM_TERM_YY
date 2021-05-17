@@ -1,0 +1,26 @@
+name: Homework and LS Solutions
+
+on:
+  # The actions are scheduled by the following crontab. **All times are based in UTC**. The first two entries are minutes and hours (in UTC), and 
+  # the last entry is the day (0: Sunday, 1: Monday,..., 6: Saturday). 
+  # Example: 
+  #   Suppose that I want to release the homeworks every Wednesday at 7:30pm PST, i.e., Thursday at 2:30am UTC.
+  #   In the crontab, I would use '30 2 * * 4'. 
+  #   For more, go to https://crontab.guru/#30_2_*_*_4    
+  schedule:
+    # Time in UTC
+    - cron: '30 19 * * 4'
+      
+jobs:
+  ls_solutions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: octokit/request-action@v2.x
+        id: get_latest_release
+        with:
+          route: GET /repos/{owner}/{repo}/releases/latest
+          owner: mids-w203
+          repo: request-action
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: "echo latest release: ${{ steps.get_latest_release.outputs.data }}"
